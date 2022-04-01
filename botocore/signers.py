@@ -529,7 +529,7 @@ def add_generate_presigned_url(class_attributes, **kwargs):
 
 
 def generate_presigned_url(self, ClientMethod, Params=None, ExpiresIn=3600,
-                           HttpMethod=None):
+                           HttpMethod=None, ReadURL=None):
     """Generate a presigned url given a client, its method, and arguments
 
     :type ClientMethod: string
@@ -574,7 +574,7 @@ def generate_presigned_url(self, ClientMethod, Params=None, ExpiresIn=3600,
         request_dict['method'] = http_method
 
     # decide on endpoint url
-    endpoint_url = params.get('ReadURL', self.meta.endpoint_url)
+    endpoint_url = ReadURL or self.meta.endpoint_url
 
     # Prepare the request dict by including the client's endpoint url.
     prepare_request_dict(
